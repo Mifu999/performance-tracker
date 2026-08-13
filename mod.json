@@ -1,0 +1,104 @@
+{
+    "geode": "5.9.0",
+    "gd": {
+        "win": "2.2081",
+        "mac": "2.2081",
+        "android": "2.2081",
+        "ios": "2.2081"
+    },
+    "id": "mifu.performance-tracker",
+    "name": "Performance Tracker",
+    "version": "v1.0.0",
+    "developers": ["Mifuu"],
+    "description": "Logs FPS, CPU and RAM over time and shows detailed stats, graphs and records per day, week, month or custom range.",
+    "tags": ["utility", "performance", "interface", "offline"],
+    "repository": "https://github.com/Mifu999/performance-tracker",
+    "issues": {
+        "info": "Report bugs and suggestions on the GitHub repository.",
+        "url": "https://github.com/Mifu999/performance-tracker/issues"
+    },
+    "settings": {
+        "tracking-title": {
+            "type": "title",
+            "name": "Tracking"
+        },
+        "enabled": {
+            "type": "bool",
+            "name": "Enable tracking",
+            "description": "Master switch. When off, nothing is measured or written to disk. Already recorded data is kept.",
+            "default": true
+        },
+        "sample-interval": {
+            "type": "int",
+            "name": "Sample interval (s)",
+            "description": "How many seconds of gameplay each recorded data point covers. Lower = more precise graphs, bigger files. A sample is also closed early whenever you enter or leave a level.",
+            "default": 5,
+            "min": 1,
+            "max": 60,
+            "control": { "slider": true }
+        },
+        "flush-interval": {
+            "type": "int",
+            "name": "Write to disk every (s)",
+            "description": "How often buffered samples are written to disk. Lower = less data lost if the game crashes, slightly more disk writes.",
+            "default": 30,
+            "min": 5,
+            "max": 600
+        },
+        "track-menus": {
+            "type": "bool",
+            "name": "Track outside of levels",
+            "description": "Also record performance in menus and loading screens, not just in levels and the editor.",
+            "default": true
+        },
+        "retention-days": {
+            "type": "int",
+            "name": "Keep history for (days)",
+            "description": "Delete data files older than this on startup. 0 = keep everything forever.",
+            "default": 0,
+            "min": 0,
+            "max": 3650
+        },
+        "overlay-title": {
+            "type": "title",
+            "name": "In-game overlay"
+        },
+        "overlay-enabled": {
+            "type": "bool",
+            "name": "Show overlay",
+            "description": "Display a small live readout on top of the game.",
+            "default": false
+        },
+        "overlay-corner": {
+            "type": "string",
+            "name": "Overlay corner",
+            "default": "Top Right",
+            "one-of": ["Top Left", "Top Right", "Bottom Left", "Bottom Right"]
+        },
+        "overlay-metrics": {
+            "type": "string",
+            "name": "Overlay content",
+            "default": "FPS + CPU + RAM",
+            "one-of": ["FPS", "FPS + CPU", "FPS + CPU + RAM"]
+        },
+        "overlay-scale": {
+            "type": "float",
+            "name": "Overlay scale",
+            "default": 0.4,
+            "min": 0.2,
+            "max": 1.0,
+            "control": { "slider": true }
+        },
+        "interface-title": {
+            "type": "title",
+            "name": "Interface"
+        },
+        "menu-button": {
+            "type": "bool",
+            "name": "Main menu button",
+            "description": "Add the Performance Tracker button to the bottom row of the main menu.",
+            "default": true,
+            "requires-restart": true
+        }
+    }
+}
