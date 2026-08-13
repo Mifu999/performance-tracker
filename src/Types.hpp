@@ -130,10 +130,32 @@ namespace pt {
         return buf;
     }
 
+    /// Accepts "YYYY-MM-DD" and tolerates unpadded parts ("2026-8-1").
     inline bool parseDayKey(std::string const& s, std::time_t& out) {
-        int y = 0, m = 0, d = 0;
-        if (std::sscanf(s.c_str(), "%d-%d-%d", &y, &m, &d) != 3) return false;
+        int    parts[3] = { 0, 0, 0 };
+        int    idx      = 0;
+        size_t digits   = 0;
+
+        for (char c : s) {
+            if (c >= '0' && c <= '9') {
+                if (digits >= 4) return false;
+                parts[idx] = parts[idx] * 10 + (c - '0');
+                ++digits;
+            }
+            else if (c == '-' || c == '/') {
+                if (digits == 0 || idx >= 2) return false;
+                ++idx;
+                digits = 0;
+            }
+            else {
+                return false;
+            }
+        }
+        if (idx != 2 || digits == 0) return false;
+
+        int y = parts[0], m = parts[1], d = parts[2];
         if (y < 1970 || y > 3000 || m < 1 || m > 12 || d < 1 || d > 31) return false;
+
         std::tm tm{};
         tm.tm_year = y - 1900;
         tm.tm_mon  = m - 1;
