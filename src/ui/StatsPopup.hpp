@@ -4,6 +4,7 @@
 #include "GraphNode.hpp"
 
 #include <Geode/Geode.hpp>
+#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/ui/Popup.hpp>
 #include <Geode/ui/ScrollLayer.hpp>
 
@@ -55,8 +56,9 @@ namespace pt {
         cocos2d::CCLabelBMFont* m_rangeLabel  = nullptr;
         GraphNode*              m_graph       = nullptr;
 
-        std::vector<cocos2d::CCMenuItemSpriteExtra*> m_rangeButtons;
-        std::vector<cocos2d::CCMenuItemSpriteExtra*> m_tabButtons;
-        std::vector<cocos2d::CCMenuItemSpriteExtra*> m_metricButtons;
+        // CCMenuItemSpriteExtra is a GD class in the global namespace, not cocos2d
+        std::vector<CCMenuItemSpriteExtra*> m_rangeButtons;
+        std::vector<CCMenuItemSpriteExtra*> m_tabButtons;
+        std::vector<CCMenuItemSpriteExtra*> m_metricButtons;
     };
 }
