@@ -15,3 +15,10 @@ jobs:
           submodules: recursive
 
       - uses: geode-sdk/build-geode-mod@main
+
+      - name: Upload .geode
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-tracker-windows
+          path: output/*.geode
+          if-no-files-found: error
