@@ -8,7 +8,7 @@
 #include <Geode/loader/GameEvent.hpp>
 #include <Geode/modify/CCScheduler.hpp>
 #include <Geode/modify/MenuLayer.hpp>
-#include <Geode/ui/BasedButtonSprite.hpp>
+#include <Geode/utils/cocos.hpp>
 
 using namespace geode::prelude;
 using namespace pt;
@@ -48,13 +48,22 @@ class $modify(PTMenuLayer, MenuLayer) {
             return true;
         }
 
-        CCNode* sprite = nullptr;
-        if (auto icon = CCSprite::createWithSpriteFrameName("GJ_statsBtn_001.png")) {
-            icon->setScale(.75f);
-            sprite = CircleButtonSprite::create(icon, CircleBaseColor::Green, CircleBaseSize::Medium);
+        CCNode* sprite = CCSprite::create("menu-icon.png"_spr);
+        if (sprite) {
+            // match whatever height the buttons already sitting in the row use,
+            // so the icon lines up no matter which mods added what
+            float target = 40.f;
+            if (auto children = bottomMenu->getChildren()) {
+                if (children->count() > 0) {
+                    auto first = static_cast<CCNode*>(children->objectAtIndex(0));
+                    float height = first->getScaledContentSize().height;
+                    if (height > 5.f) target = height;
+                }
+            }
+            limitNodeSize(sprite, { target, target }, 999.f, .05f);
         }
-        if (!sprite) {
-            // never leave the menu without a working button if the frame is missing
+        else {
+            // never leave the menu without a working button if the sprite is missing
             sprite = ButtonSprite::create("FPS", "bigFont.fnt", "GJ_button_01.png", .6f);
         }
 

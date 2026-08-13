@@ -8,14 +8,26 @@
     },
     "id": "mifu.performance-tracker",
     "name": "Performance Tracker",
-    "version": "v1.0.0",
-    "developers": ["Mifuu"],
+    "version": "v1.0.1",
+    "developers": [
+        "Mifuu"
+    ],
     "description": "Logs FPS, CPU and RAM over time and shows detailed stats, graphs and records per day, week, month or custom range.",
-    "tags": ["utility", "performance", "interface", "offline"],
+    "tags": [
+        "utility",
+        "performance",
+        "interface",
+        "offline"
+    ],
     "repository": "https://github.com/Mifu999/performance-tracker",
     "issues": {
         "info": "Report bugs and suggestions on the GitHub repository.",
         "url": "https://github.com/Mifu999/performance-tracker/issues"
+    },
+    "resources": {
+        "sprites": [
+            "resources/*.png"
+        ]
     },
     "settings": {
         "tracking-title": {
@@ -35,7 +47,9 @@
             "default": 5,
             "min": 1,
             "max": 60,
-            "control": { "slider": true }
+            "control": {
+                "slider": true
+            }
         },
         "flush-interval": {
             "type": "int",
@@ -73,13 +87,22 @@
             "type": "string",
             "name": "Overlay corner",
             "default": "Top Right",
-            "one-of": ["Top Left", "Top Right", "Bottom Left", "Bottom Right"]
+            "one-of": [
+                "Top Left",
+                "Top Right",
+                "Bottom Left",
+                "Bottom Right"
+            ]
         },
         "overlay-metrics": {
             "type": "string",
             "name": "Overlay content",
             "default": "FPS + CPU + RAM",
-            "one-of": ["FPS", "FPS + CPU", "FPS + CPU + RAM"]
+            "one-of": [
+                "FPS",
+                "FPS + CPU",
+                "FPS + CPU + RAM"
+            ]
         },
         "overlay-scale": {
             "type": "float",
@@ -87,7 +110,9 @@
             "default": 0.4,
             "min": 0.2,
             "max": 1.0,
-            "control": { "slider": true }
+            "control": {
+                "slider": true
+            }
         },
         "interface-title": {
             "type": "title",

@@ -55,6 +55,13 @@ Plus **Export CSV** and **Open folder**.
 * `sessions.tsv` - one line per launch.
 * `exports/` - CSV exports.
 
+## Resources
+
+`resources/menu-icon.png` is the mod's own logo, declared under `resources.sprites`
+in `mod.json` and used for the main menu button via `CCSprite::create("menu-icon.png"_spr)`.
+Geode treats the source as UHD and generates the HD/Low variants at build time, so
+only the 256x256 original is committed. No game asset is reused for the button.
+
 ## Settings
 
 Sample interval, disk flush interval, whether to track outside of levels,
